@@ -1,0 +1,24 @@
+{
+  "name": "vue-intro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasonerniody12345/vue-intro.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jasonerniody12345/vue-intro/issues"
+  },
+  "homepage": "https://github.com/jasonerniody12345/vue-intro#readme",
+  "dependencies": {
+    "nodemon": "^2.0.7",
+    "vue": "^2.6.12"
+  }
+}

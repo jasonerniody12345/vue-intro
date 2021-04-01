@@ -1,0 +1,15 @@
+.is-logged-out {
+    display: flex;
+    text-align: center;
+    top: 30%;
+    position: absolute;
+    right: 800px;
+}
+
+.is-logged-in {
+    display: flex;
+    text-align: center;
+    top: 30%;
+    position: absolute;
+    right: 750px;
+}
