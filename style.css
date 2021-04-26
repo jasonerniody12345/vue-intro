@@ -1,0 +1,115 @@
+.is-logged-out {
+    display: flex;
+    text-align: center;
+    top: 30%;
+    position: absolute;
+    width: 100;
+    align-items: center;
+    right: 40%;
+}
+
+.is-logged-in {
+    display: flex;
+    text-align: center;
+    top: 30%;
+    position: absolute;
+    right: 30%;
+}
+
+
+.login-false {
+    color:rgb(160, 23, 23);
+    top: 100%;
+}
+
+.title-1 {
+    display: flex;
+    text-align: right;
+    top: -150%;
+    position: absolute;
+    width: 100;
+    align-items: center;
+    right: 65%;
+}
+
+.list {
+    display: flex;
+    text-align: right;
+    top: 200%;
+    position: absolute;
+    align-items: center;
+    right: 65%;
+}
+
+.title-2  {
+    display: flex;
+    text-align: right;
+    top: -150%;
+    position: absolute;
+    width: 100;
+    align-items: center;
+    right: 30%;
+}
+
+.text1 {
+    display: flex;
+    text-align: right;
+    top: 100%;
+    position: absolute;
+    width: 100;
+    align-items: center;
+    right: 5%;
+}
+
+.text2 {
+    display: flex;
+    top: 250%;
+    position: absolute;
+    width: 100;
+    right: 5%;
+}
+
+.login-button {
+    display: flex;
+    text-align: right;
+    top: 400%;
+    position: absolute;
+    width: 100;
+    align-items: center;
+    right: 70%;
+}
+
+/* .register-button {
+    display: flex;
+    text-align: right;
+    top: 400%;
+    position: absolute;
+    width: 100;
+    align-items: center;
+    right: 6%;
+} */
+
+.add-button {
+    display: flex;
+    text-align: right;
+    width: 100;
+    align-items: center;
+    right: 10%;
+}
+
+.list {
+    display: flex;
+    text-align: right;
+    width: 100;
+    align-items: center;
+    right: 50%;
+}
+
+.log-out {
+    display: flex;
+    top: 100%;
+    text-align: right;
+    width: 100;
+    align-items: center;
+    right: 10%;
+}
