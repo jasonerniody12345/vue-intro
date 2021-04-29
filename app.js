@@ -14,7 +14,8 @@ new Vue ({
         passInput: "",
         isError: false,
         isRegister: false,
-        registered: false
+        registered: false,
+        page: "login"
     },
     methods: {
         onSubmit () {
@@ -28,6 +29,7 @@ new Vue ({
         onLogin (){
             if(this.emailInput === this.userEmail && this.userPass === this.passInput){
                 this.isLoggedIn = true
+                this.page = "content"
             }
             else{
                 console.log("Email or Password wrong")
@@ -35,9 +37,11 @@ new Vue ({
             }
         },
         onRegister (){
-            this.userEmail = ""
-            this.userPass = ""
-            this.isRegister = true
+            this.page = "register"
+            // this.isRegister = true
         },
+        onSubmitRegister (){
+            this.page = "login"
+        }
     }
 })

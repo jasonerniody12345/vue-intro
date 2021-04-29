@@ -10,12 +10,12 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
     <!-- <script src="https://unpkg.com/vue@next"></script> -->
 
-
 </head>
 <body>
     <div id=app>
-      <div class="is-logged-in" v-if="isLoggedIn === true">
-        <div class="title-1">
+      <!--Content Page-->
+      <div class="is-logged-in" v-if="isLoggedIn === true && page === 'content'">
+        <div class="title-content">
           <h2>{{ title }}</h2>
         </div>
           <input type="text" v-model="newList" placeholder="please input your list" @keyup.enter="onSubmit">
@@ -29,41 +29,47 @@
           <a href="index.html">Log Out</a>
           </div>
       </div>
-      <div class="is-logged-out" v-else-if="isLoggedIn === false && isRegister === false">
-        <div class="title-2"> 
+
+      <!--Login Page-->
+      <div class="is-logged-out" v-else-if="isLoggedIn === false && page === 'login'">
+        <div class="title-login"> 
           <h2>Login</h2>
         </div>
-            <div class="text1">
+            <div class="email-input-1">
               <input type="text" v-model="emailInput" class="form-control" placeholder="email" required>
             </div>
-            <div class=text2>
+            <div class=password-input-1>
               <input type="password" v-model="passInput" class="form-control" placeholder="password" required>
             </div>
-            <div class="login-button">
+            <div class="button-login">
               <button @click="onLogin" class="btn btn-primary">login</button>
-            </div>
-            <div class="register-button">
               <button @click="onRegister" class="btn btn-primary">register</button>
             </div>
             <div class="login-false" v-if="isError === true"> 
               <p>Wrong Username or password</p>
             </div>
       </div>
-      <div class="register" v-else-if="isRegister === true">
-        <div class="text3">
+
+      <!--Register Page-->
+      <div class="register" v-else-if="page === 'register'">
+        <div class="title-register"> 
+          <h2>Register</h2>
+        </div>
+        <div class="email-input">
           <input type="text" v-model="userEmail" class="form-control" placeholder="email" required>
         </div>
-        <div class=text4>
+        <div class=password-input>
           <input type="password" v-model="userPass" class="form-control" placeholder="password" required>
         </div>
-        <div class="register-button-2">
-          <button @click="onRegister" class="btn btn-primary">register</button>
+        <div class="button-register">
+          <button @click="onSubmitRegister" class="btn btn-primary">register</button>
+          <a href="index.html" class="btn btn-primary" role="button" aria-pressed="true">back</a>
         </div>
-        <a href="index.html" class="btn btn-primary" role="button" aria-pressed="true">Login Here!</a>
         <div class="register-true" v-if="registered === true">
-          <p>Sucessfully registestered</p>
+          <p>Sucessfully registered</p>
         </div>
     </div>
+  </div>
     </body>
     <script src="app.js"></script>
 </html>
