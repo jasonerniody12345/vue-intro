@@ -1,11 +1,9 @@
 .is-logged-out {
     display: flex;
     text-align: center;
-    top: 30%;
-    position: absolute;
-    width: 100;
     align-items: center;
-    right: 40%;
+    flex-direction: column;
+    margin-top: 17%;
 }
 
 .is-logged-in {
@@ -20,6 +18,7 @@
 .login-false {
     color:rgb(160, 23, 23);
     top: 100%;
+    margin-top: 20%;
 }
 
 .title-content {
@@ -32,20 +31,11 @@
     right: 65%;
 }
 
-.title-login  {
+.register  {
     display: flex;
-    top: -500%;
-    position: absolute;
+    flex-direction: column;
     align-items: center;
-    right: 40%;
-}
-
-.title-register  {
-    display: flex;
-    top: 4%;
-    position: absolute;
-    align-items: center;
-    right: 45%;
+    margin-top: 17%;
 }
 
 .list {
@@ -57,54 +47,12 @@
     right: 65%;
 }
 
-.email-input {
-    display: flex;
-    text-align: right;
-    top: 10%;
-    position: absolute;
-    right: 43%;
-}
-
-.password-input {
-    display: flex;
-    text-align: right;
-    top: 15%;
-    position: absolute;
-    right: 43%;
-}
-
-.email-input-1 {
-    display: flex;
-    text-align: right;
-    top: 100%;
-    right: 45%;
-}
-
-.password-input-1 {
-    display: flex;
-    text-align: right;
-    top: 1000000000000000000%;
-    right: 45%;
-}
-
-.button-register {
-    right: 10%;
-    top : 20%;
-}
-
 .button-login{
-    display: flex;
-    top: 200%;
-    position: absolute;
-    right: 35%;
+    margin-top: 1rem;
 }
 
-.add-button {
-    display: flex;
-    text-align: right;
-    width: 100;
-    align-items: center;
-    right: 10%;
+.button-register{
+    margin-top: 1rem;
 }
 
 .list {

@@ -42,6 +42,9 @@ new Vue ({
         },
         onSubmitRegister (){
             this.page = "login"
+        },
+        onBack(){
+            this.page = "login"
         }
     }
 })

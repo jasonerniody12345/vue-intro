@@ -58,12 +58,12 @@
         <div class="email-input">
           <input type="text" v-model="userEmail" class="form-control" placeholder="email" required>
         </div>
-        <div class=password-input>
+        <div class="password-input">
           <input type="password" v-model="userPass" class="form-control" placeholder="password" required>
         </div>
         <div class="button-register">
           <button @click="onSubmitRegister" class="btn btn-primary">register</button>
-          <a href="index.html" class="btn btn-primary" role="button" aria-pressed="true">back</a>
+          <button @click="onBack" class="btn btn-primary">back</button>
         </div>
         <div class="register-true" v-if="registered === true">
           <p>Sucessfully registered</p>
