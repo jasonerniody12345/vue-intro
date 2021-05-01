@@ -8,27 +8,19 @@
 
 .is-logged-in {
     display: flex;
+    flex-direction: column;
     text-align: center;
-    top: 30%;
-    position: absolute;
-    right: 30%;
+    margin-top: 15%;
+    align-items: center;
 }
-
 
 .login-false {
     color:rgb(160, 23, 23);
-    top: 100%;
-    margin-top: 20%;
+    margin-top: -11%;
 }
 
-.title-content {
-    display: flex;
-    text-align: right;
-    top: -150%;
-    position: absolute;
-    width: 100;
-    align-items: center;
-    right: 65%;
+.add-button {
+    margin-top: 1rem;
 }
 
 .register  {
@@ -36,15 +28,6 @@
     flex-direction: column;
     align-items: center;
     margin-top: 17%;
-}
-
-.list {
-    display: flex;
-    text-align: right;
-    top: 200%;
-    position: absolute;
-    align-items: center;
-    right: 65%;
 }
 
 .button-login{
@@ -56,17 +39,5 @@
 }
 
 .list {
-    display: flex;
-    text-align: right;
-    width: 100;
-    align-items: center;
-    right: 50%;
-    flex-direction: column;
-}
-
-.log-out {
-    display: flex;
-    top: 400%;
-    align-items: center;
-    right: 10%;
+    margin-top: 1rem;
 }
