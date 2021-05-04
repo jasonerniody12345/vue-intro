@@ -18,15 +18,38 @@
         <div class="title-content">
           <h2>{{ title }}</h2>
         </div>
-          <input type="text" v-model="newList" placeholder="please input your list" @keyup.enter="onSubmit">
+          <input type="text" v-model="newName" placeholder="name" @keyup.enter="onSubmit">
+          <input type="text" v-model="newDescription" placeholder="description" @keyup.enter="onSubmit">
+          <input type="text" v-model="newDate" placeholder="date" @keyup.enter="onSubmit">
+          <input type="text" v-model="newStatus" placeholder="status" @keyup.enter="onSubmit">
           <div class="add-button">
             <button @click="onSubmit" class="btn btn-primary">Add List</button>
+            <button @click="onBack" class="btn btn-primary">Logout</button>
           </div>
-          <div class="list">
+          <!-- <div class="list">
             <p v-for="(item, index) in list" :key="index" @click="onDelete(index)">{{ (index + 1) + "." }} {{ item }}</p>
-          </div>
-          <div class="log-out">
-          <a href="index.html">Log Out</a>
+          </div> -->
+          <div class="table">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Date</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(item, index) in list" :key="index" @click="onDelete(index)">
+                <th scope="row">1</th>
+                <td><p> {{item.name}} </p></td>
+                <td><p> {{item.description}} </p></td>
+                <td><p> {{item.date}} </p></td>
+                <td><p> {{item.status}} </p></td>
+              </tr>
+            </tbody>
+          </table>
           </div>
       </div>
 
@@ -62,7 +85,9 @@
           <input type="password" v-model="userPass" class="form-control" placeholder="password" required>
         </div>
         <div class="button-register">
-          <button @click="onSubmitRegister" class="btn btn-primary">register</button>
+          <!-- <button :disabled="validateRegisterInput === false" @click="onSubmitRegister" class="btn btn-primary">register</button> -->
+          <!-- <button :disabled="!validateRegisterInput" @click="onSubmitRegister" class="btn btn-primary">register</button> -->
+          <button :disabled="validateRegisterInput" @click="onSubmitRegister" class="btn btn-primary">register</button>
           <button @click="onBack" class="btn btn-primary">back</button>
         </div>
         <div class="register-true" v-if="registered === true">

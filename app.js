@@ -2,11 +2,19 @@ new Vue ({
     el: "#app",
     data: {
         list: [
-            "list1",
-            "list2"
+            {
+                name: "jason",
+                description: "ngewe",
+                date: "12/12/21",
+                status: "married"
+            }
         ],
         title: "list",
         newList: "",
+        newName: "",
+        newDescription: "",
+        newDate: "",
+        newStatus: "",
         isLoggedIn: false,
         userEmail: "",
         userPass: "",
@@ -17,17 +25,35 @@ new Vue ({
         registered: false,
         page: "login"
     },
+    computed: {
+        validateLoginInput: function () {
+          return this.emailInput === this.userEmail && this.userPass === this.passInput && this.UserPass !== "" && this.emailInput !== ""
+        },
+        validateRegisterInput: function(){
+            // if(this.userEmail !== "" && this.userPass !== ""){
+            //     return false
+            // }
+            // else {
+            //     return true 
+            // }
+            return this.userEmail !== "" && this.userPass !== ""
+        }
+    },
     methods: {
         onSubmit () {
             // console.log(this.newList)
-            this.list.push(this.newList)
-            this.newList = ""
+            // this.list.push(this.newList)
+            this.list.push(this.newName)
+            this.list.push(this.newDescription)
+            this.list.push(this.newDate)
+            this.list.push(this.newStatus)
+            // this.newList = ""
         },
         onDelete (index) {
             this.list.splice(index, 1)
         },
         onLogin (){
-            if(this.emailInput === this.userEmail && this.userPass === this.passInput){
+            if(this.validateLoginInput){
                 this.isLoggedIn = true
                 this.page = "content"
             }
@@ -45,6 +71,7 @@ new Vue ({
         },
         onBack(){
             this.page = "login"
+            this.isLoggedIn = false
         }
     }
 })

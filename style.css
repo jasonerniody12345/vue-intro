@@ -14,9 +14,18 @@
     align-items: center;
 }
 
+.input {
+    display: flex;
+    flex-direction: column;
+}
+
+.table {
+    margin-top: 1rem;
+}
+
 .login-false {
     color:rgb(160, 23, 23);
-    margin-top: -11%;
+    margin-top: -15%;
 }
 
 .add-button {
