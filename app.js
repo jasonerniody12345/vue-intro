@@ -43,11 +43,13 @@ new Vue ({
         onSubmit () {
             // console.log(this.newList)
             // this.list.push(this.newList)
-            this.list.push(this.newName)
-            this.list.push(this.newDescription)
-            this.list.push(this.newDate)
-            this.list.push(this.newStatus)
             // this.newList = ""
+            this.list.push({
+                name: this.newName,
+                description: this.newDescription,
+                date: this.newDate,
+                status: "todo"
+            })
         },
         onDelete (index) {
             this.list.splice(index, 1)

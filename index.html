@@ -38,15 +38,17 @@
                 <th scope="col">Description</th>
                 <th scope="col">Date</th>
                 <th scope="col">Status</th>
+                <!-- <th scope="col">Created Date</th> -->
               </tr>
             </thead>
             <tbody>
               <tr v-for="(item, index) in list" :key="index" @click="onDelete(index)">
-                <th scope="row">1</th>
-                <td><p> {{item.name}} </p></td>
-                <td><p> {{item.description}} </p></td>
-                <td><p> {{item.date}} </p></td>
-                <td><p> {{item.status}} </p></td>
+                <th scope="row">{{ index + 1 }}</th>
+                <td><p> {{ item.name }} </p></td>
+                <td><p> {{ item.description }} </p></td>
+                <td><p> {{ item.date }} </p></td>
+                <td><p> {{ item.status }} </p></td>
+                <!-- <td><p> {{ newDate() }} </p></td> -->
               </tr>
             </tbody>
           </table>
@@ -85,9 +87,9 @@
           <input type="password" v-model="userPass" class="form-control" placeholder="password" required>
         </div>
         <div class="button-register">
-          <!-- <button :disabled="validateRegisterInput === false" @click="onSubmitRegister" class="btn btn-primary">register</button> -->
+          <button :disabled="validateRegisterInput === false" @click="onSubmitRegister" class="btn btn-primary">register</button>
           <!-- <button :disabled="!validateRegisterInput" @click="onSubmitRegister" class="btn btn-primary">register</button> -->
-          <button :disabled="validateRegisterInput" @click="onSubmitRegister" class="btn btn-primary">register</button>
+          <!-- <button :disabled="validateRegisterInput" @click="onSubmitRegister" class="btn btn-primary">register</button> -->
           <button @click="onBack" class="btn btn-primary">back</button>
         </div>
         <div class="register-true" v-if="registered === true">
