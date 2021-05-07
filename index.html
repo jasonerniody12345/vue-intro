@@ -20,10 +20,14 @@
         </div>
           <input type="text" v-model="newName" placeholder="name" @keyup.enter="onSubmit">
           <input type="text" v-model="newDescription" placeholder="description" @keyup.enter="onSubmit">
-          <input type="text" v-model="newDate" placeholder="date" @keyup.enter="onSubmit">
-          <input type="text" v-model="newStatus" placeholder="status" @keyup.enter="onSubmit">
+          <!-- <input type="text" v-model="newDate" placeholder="date" @keyup.enter="onSubmit"> -->
+          <label for="birthday">Created Date</label>
+          <input type="date" v-model="newDate" name="CreatedDate" @keyup.enter="onSubmit">
+          <label for="birthday">Due Date</label>
+          <input type="date" v-model="dueDate" name="dueDate" @keyup.enter="onSubmit">
+          <!-- <input type="text" v-model="newStatus" placeholder="status" @keyup.enter="onSubmit"> -->
           <div class="add-button">
-            <button @click="onSubmit" class="btn btn-primary">Add List</button>
+            <button :disabled="validateContentInput === false" @click="onSubmit" class="btn btn-primary">Add List</button>
             <button @click="onBack" class="btn btn-primary">Logout</button>
           </div>
           <!-- <div class="list">
@@ -36,19 +40,22 @@
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
                 <th scope="col">Description</th>
-                <th scope="col">Date</th>
+                <th scope="col">Created Date</th>
+                <th scope="col">Due Date</th>
                 <th scope="col">Status</th>
-                <!-- <th scope="col">Created Date</th> -->
+                <!-- <th scope="col">Status</th> -->
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in list" :key="index" @click="onDelete(index)">
+              <tr v-for="(item, index) in list" :key="index" @click="onDelete(index)" >
+              <!-- <tr v-for="(item, index) in list" :key="index" > -->
+              <!-- <tr> -->
                 <th scope="row">{{ index + 1 }}</th>
                 <td><p> {{ item.name }} </p></td>
                 <td><p> {{ item.description }} </p></td>
-                <td><p> {{ item.date }} </p></td>
+                <td><p> {{ item.createdDate }} </p></td>
+                <td><p> {{ item.dueDate }} </p></td>
                 <td><p> {{ item.status }} </p></td>
-                <!-- <td><p> {{ newDate() }} </p></td> -->
               </tr>
             </tbody>
           </table>

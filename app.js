@@ -4,9 +4,17 @@ new Vue ({
         list: [
             {
                 name: "jason",
-                description: "ngewe",
-                date: "12/12/21",
-                status: "married"
+                description: "tarek sis",
+                createdDate: "12/12/21",
+                dueDate: "15/12/21",
+                status: "todo"
+            },
+            {
+                name: "justin",
+                description: "mantoel",
+                createdDate: "9/10/20",
+                dueDate: "10/10/20",
+                status: "todo"
             }
         ],
         title: "list",
@@ -14,8 +22,9 @@ new Vue ({
         newName: "",
         newDescription: "",
         newDate: "",
+        dueDate: "",
         newStatus: "",
-        isLoggedIn: false,
+        isLoggedIn: true,
         userEmail: "",
         userPass: "",
         emailInput: "",
@@ -23,7 +32,7 @@ new Vue ({
         isError: false,
         isRegister: false,
         registered: false,
-        page: "login"
+        page: "content"
     },
     computed: {
         validateLoginInput: function () {
@@ -37,6 +46,9 @@ new Vue ({
             //     return true 
             // }
             return this.userEmail !== "" && this.userPass !== ""
+        },
+        validateContentInput: function(){
+            return this.newName !== "" && this.newDescription !== "" && this.dueDate !== ""
         }
     },
     methods: {
@@ -47,8 +59,10 @@ new Vue ({
             this.list.push({
                 name: this.newName,
                 description: this.newDescription,
-                date: this.newDate,
+                createdDate: this.newDate,
+                dueDate: this.dueDate,
                 status: "todo"
+                // status: this.newStatus
             })
         },
         onDelete (index) {
