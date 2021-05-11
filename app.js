@@ -5,15 +5,13 @@ new Vue ({
             {
                 name: "jason",
                 description: "tarek sis",
-                createdDate: "12/12/21",
-                dueDate: "15/12/21",
+                dueDate: "5/7/2021",
                 status: "todo"
             },
             {
                 name: "justin",
                 description: "mantoel",
-                createdDate: "9/10/20",
-                dueDate: "10/10/20",
+                dueDate: "5/1/2021",
                 status: "todo"
             }
         ],
@@ -21,7 +19,6 @@ new Vue ({
         newList: "",
         newName: "",
         newDescription: "",
-        newDate: "",
         dueDate: "",
         newStatus: "",
         isLoggedIn: true,
@@ -59,7 +56,6 @@ new Vue ({
             this.list.push({
                 name: this.newName,
                 description: this.newDescription,
-                createdDate: this.newDate,
                 dueDate: this.dueDate,
                 status: "todo"
                 // status: this.newStatus
