@@ -5,17 +5,18 @@ new Vue ({
             {
                 name: "jason",
                 description: "tarek sis",
-                dueDate: "5/7/2021",
+                dueDate: "2021-05-10",
                 status: "todo"
             },
             {
                 name: "justin",
                 description: "mantoel",
-                dueDate: "5/1/2021",
+                dueDate: "2021-05-04",
                 status: "todo"
             }
         ],
         title: "list",
+        updatedList: "",
         newList: "",
         newName: "",
         newDescription: "",
@@ -46,6 +47,9 @@ new Vue ({
         },
         validateContentInput: function(){
             return this.newName !== "" && this.newDescription !== "" && this.dueDate !== ""
+        },
+        createdDate: function(){
+            return new Date().toLocaleDateString();
         }
     },
     methods: {

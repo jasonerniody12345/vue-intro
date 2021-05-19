@@ -14,6 +14,13 @@
     align-items: center;
 }
 
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
 .input {
     display: flex;
     flex-direction: column;
