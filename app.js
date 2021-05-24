@@ -21,7 +21,11 @@ new Vue ({
         newName: "",
         newDescription: "",
         dueDate: "",
-        newStatus: "",
+        newStatus: false,
+        editName: "",
+        editDescription: "",
+        editdueDate: "",
+        editStatus: "",
         isLoggedIn: true,
         userEmail: "",
         userPass: "",
@@ -61,9 +65,24 @@ new Vue ({
                 name: this.newName,
                 description: this.newDescription,
                 dueDate: this.dueDate,
-                status: "todo"
-                // status: this.newStatus
-            })
+                status: this.newStatus
+                // status: "todo"
+            })   
+            this.newName = "",
+            this.newDescription = "",
+            this.dueDate = ""
+        },
+        onSubmitEdit (){
+            this.list[this.EditIndex].name = this.editName,
+            this.list[this.EditIndex].description = this.editDescription,
+            this.list[this.EditIndex].dueDate = this.editdueDate,
+            this.list[this.EditIndex].status = this.editStatus
+        },
+        onEdit (index){
+            this.editName = this.list[index].newName
+            this.editDescription = this.list[index].newDescription
+            this.editDate = this.list[index].dueDate
+            this.editStatus = this.list[index].newStatus
         },
         onDelete (index) {
             this.list.splice(index, 1)
