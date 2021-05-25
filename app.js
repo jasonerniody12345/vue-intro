@@ -16,6 +16,7 @@ new Vue ({
             }
         ],
         title: "list",
+        onEditIndex: "",
         updatedList: "",
         newList: "",
         newName: "",
@@ -73,16 +74,19 @@ new Vue ({
             this.dueDate = ""
         },
         onSubmitEdit (){
-            this.list[this.EditIndex].name = this.editName,
-            this.list[this.EditIndex].description = this.editDescription,
-            this.list[this.EditIndex].dueDate = this.editdueDate,
-            this.list[this.EditIndex].status = this.editStatus
+            console.log(this.onEditIndex)
+            this.list[this.onEditIndex].name = this.editName,
+            this.list[this.onEditIndex].description = this.editDescription,
+            this.list[this.onEditIndex].dueDate = this.editdueDate,
+            this.list[this.onEditIndex].status = this.editStatus
         },
         onEdit (index){
-            this.editName = this.list[index].newName
-            this.editDescription = this.list[index].newDescription
+            console.log("====", this.list[index])
+            this.onEditIndex = index
+            this.editName = this.list[index].name
+            this.editDescription = this.list[index].description
             this.editDate = this.list[index].dueDate
-            this.editStatus = this.list[index].newStatus
+            this.editStatus = this.list[index].status
         },
         onDelete (index) {
             this.list.splice(index, 1)

@@ -54,18 +54,18 @@
           </div>
           <div class="modal-body">
             <input type="test" class="form-control"  v-model="editName" placeholder="name" @keyup.enter="onSubmitEdit">
-            <input type="text" class="form-control"  v-model="editescription" placeholder="description" @keyup.enter="onSubmitEdit">
-            <input type="date" class= "form-control" v-model="editdueDate" name="dueDate" @keyup.enter="onSubmitEdit">
+            <input type="text" class="form-control"  v-model="editDescription" placeholder="description" @keyup.enter="onSubmitEdit">
+            <input type="date" class= "form-control" v-model="editdueDate" @keyup.enter="onSubmitEdit">
             <br>
             <p>Todo or Done</p>
             <label class="switch">
-              <input type="checkbox" checked v-model="newStatus" @keyup.enter="onEdit">
+              <input type="checkbox" checked v-model="editStatus" @keyup.enter="onSubmitEdit">
               <span class="slider round"></span>
             </label>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button :disabled="validateContentInput === false" type="button" class="btn btn-primary" @click="onSubmitEdit">Save changes</button>
+            <button type="button" class="btn btn-primary" @click="onSubmitEdit">Save changes</button>
           </div>
         </div>
       </div>
@@ -102,7 +102,7 @@
                 <td><p> {{ item.dueDate }} </p></td>
                 <td v-if="item.status === true"><p> done </p></td>
                 <td v-else="item.status === false"><p> todo </p></td>
-                <td><p><a href = "#"data-toggle="modal" data-target="#exampleModalCenter2"@click="onSubmitEdit(index)">Edit</a> | <a href = "#" @click="onDelete(index)">Delete</a></p></td>
+                <td><p><a href = "#"data-toggle="modal" data-target="#exampleModalCenter2"@click="onEdit(index)">Edit</a> | <a href = "#" @click="onDelete(index)">Delete</a></p></td>
               </tr>
             </tbody>
           </table>
