@@ -6,15 +6,16 @@ new Vue ({
                 name: "jason",
                 description: "tarek sis",
                 dueDate: "2021-05-10",
-                status: "todo"
+                status: false
             },
             {
                 name: "justin",
                 description: "mantoel",
                 dueDate: "2021-05-04",
-                status: "todo"
+                status: false
             }
         ],
+        deleteTodoName: "",
         title: "list",
         onEditIndex: "",
         updatedList: "",
@@ -25,7 +26,7 @@ new Vue ({
         newStatus: false,
         editName: "",
         editDescription: "",
-        editdueDate: "",
+        editDueDate: "",
         editStatus: "",
         isLoggedIn: true,
         userEmail: "",
@@ -77,19 +78,24 @@ new Vue ({
             console.log(this.onEditIndex)
             this.list[this.onEditIndex].name = this.editName,
             this.list[this.onEditIndex].description = this.editDescription,
-            this.list[this.onEditIndex].dueDate = this.editdueDate,
+            this.list[this.onEditIndex].dueDate = this.editDueDate,
             this.list[this.onEditIndex].status = this.editStatus
         },
         onEdit (index){
-            console.log("====", this.list[index])
+            // console.log("====", this.list[index])
             this.onEditIndex = index
             this.editName = this.list[index].name
             this.editDescription = this.list[index].description
-            this.editDate = this.list[index].dueDate
+            this.editDueDate = this.list[index].dueDate
             this.editStatus = this.list[index].status
         },
-        onDelete (index) {
+        onConfirmDelete (index) {
             this.list.splice(index, 1)
+        },
+        onDelete (index){
+            // console.log("=========", this.list[index])
+            // console.log(this.list[index].name)
+            this.deleteTodoName = this.list[index].name
         },
         onLogin (){
             if(this.validateLoginInput){

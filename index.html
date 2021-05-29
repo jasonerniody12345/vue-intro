@@ -37,7 +37,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button :disabled="validateContentInput === false" type="button" class="btn btn-primary" @click="onSubmit">Add List</button>
+            <button :disabled="validateContentInput === false" type="button" class="btn btn-primary" data-dismiss="modal" @click="onSubmit">Add List</button>
           </div>
         </div>
       </div>
@@ -55,7 +55,7 @@
           <div class="modal-body">
             <input type="test" class="form-control"  v-model="editName" placeholder="name" @keyup.enter="onSubmitEdit">
             <input type="text" class="form-control"  v-model="editDescription" placeholder="description" @keyup.enter="onSubmitEdit">
-            <input type="date" class= "form-control" v-model="editdueDate" @keyup.enter="onSubmitEdit">
+            <input type="date" class= "form-control" v-model="editDueDate" @keyup.enter="onSubmitEdit">
             <br>
             <p>Todo or Done</p>
             <label class="switch">
@@ -65,7 +65,27 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" @click="onSubmitEdit">Save changes</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" @click="onSubmitEdit">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="exampleModalCenter3" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Delete Todo List</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to delete todo {{ deleteTodoName }}</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" @click="onConfirmDelete(index)">Confirm</button>
           </div>
         </div>
       </div>
@@ -100,9 +120,9 @@
                 <td><p> {{ item.description }} </p></td>
                 <td><p> {{ createdDate }} </p></td>
                 <td><p> {{ item.dueDate }} </p></td>
-                <td v-if="item.status === true"><p> done </p></td>
-                <td v-else="item.status === false"><p> todo </p></td>
-                <td><p><a href = "#"data-toggle="modal" data-target="#exampleModalCenter2"@click="onEdit(index)">Edit</a> | <a href = "#" @click="onDelete(index)">Delete</a></p></td>
+                <td v-if="item.status === true"><p style="color:green"> done </p></td>
+                <td v-else="item.status === false"><p style="color:red"> todo </p></td>
+                <td><p><a href = "#"data-toggle="modal" data-target="#exampleModalCenter2" @click="onEdit(index)">Edit</a> | <a href = "#" data-toggle="modal" data-target="#exampleModalCenter3" @click="onDelete(index)">Delete</a></p></td>
               </tr>
             </tbody>
           </table>
