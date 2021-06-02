@@ -25,9 +25,9 @@
             </button>
           </div>
           <div class="modal-body">
-              <input type="text" class="form-control"  v-model="newName" placeholder="name" @keyup.enter="onSubmit">
-              <input type="text" class="form-control"  v-model="newDescription" placeholder="description" @keyup.enter="onSubmit">
-              <input class= "form-control" type="date" v-model="dueDate" @keyup.enter="onSubmit"> 
+              <input type="text" class="form-control mt-2"  v-model="newName" placeholder="name" @keyup.enter="onSubmit">
+              <input type="text" class="form-control mt-2"  v-model="newDescription" placeholder="description" @keyup.enter="onSubmit">
+              <input class= "form-control mt-2" type="date" v-model="dueDate" @keyup.enter="onSubmit"> 
               <br>            
               <p>Todo or Done</p>  
                 <label class="switch">
@@ -53,9 +53,9 @@
             </button>
           </div>
           <div class="modal-body">
-            <input type="test" class="form-control"  v-model="editName" placeholder="name" @keyup.enter="onSubmitEdit">
-            <input type="text" class="form-control"  v-model="editDescription" placeholder="description" @keyup.enter="onSubmitEdit">
-            <input type="date" class= "form-control" v-model="editDueDate" @keyup.enter="onSubmitEdit">
+            <input type="test" class="form-control mt-2" v-model="editName" placeholder="name" @keyup.enter="onSubmitEdit">
+            <input type="text" class="form-control mt-2" v-model="editDescription" placeholder="description" @keyup.enter="onSubmitEdit">
+            <input type="date" class= "form-control mt-2" v-model="editDueDate" @keyup.enter="onSubmitEdit">
             <br>
             <p>Todo or Done</p>
             <label class="switch">
@@ -81,7 +81,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <p>Are you sure you want to delete todo {{ deleteTodoName }}</p>
+            <p>Are you sure you want to delete todo {{ deleteTodoName }}?</p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -115,7 +115,7 @@
             </thead>
             <tbody>
               <tr v-for="(item, index) in list" :key="index">
-                <th scope="row">{{ index + 1 }}</th>
+                <th scope="row"> <p v-bind:class="{'red-text': item.status === false, 'green-text': item.status === true}"> {{ index + 1 }} </p></th>
                 <td><p> {{ item.name }} </p></td>
                 <td><p> {{ item.description }} </p></td>
                 <td><p> {{ createdDate }} </p></td>
@@ -135,10 +135,10 @@
           <h2>Login</h2>
         </div>
             <div class="email-input-1">
-              <input type="text" v-model="emailInput" class="form-control" placeholder="email" required>
+              <input type="text" v-model="emailInput" class="form-control mt-2" placeholder="email" required>
             </div>
             <div class=password-input-1>
-              <input type="password" v-model="passInput" class="form-control" placeholder="password" required>
+              <input type="password" v-model="passInput" class="form-control mt-2" placeholder="password" required>
             </div>
             <div class="button-login">
               <button @click="onLogin" class="btn btn-primary">login</button>
@@ -155,10 +155,10 @@
           <h2>Register</h2>
         </div>
         <div class="email-input">
-          <input type="text" v-model="userEmail" class="form-control" placeholder="email" required>
+          <input type="text" v-model="userEmail" class="form-control mt-2" placeholder="email" required>
         </div>
         <div class="password-input">
-          <input type="password" v-model="userPass" class="form-control" placeholder="password" required>
+          <input type="password" v-model="userPass" class="form-control mt-2" placeholder="password" required>
         </div>
         <div class="button-register">
           <button :disabled="validateRegisterInput === false" @click="onSubmitRegister" class="btn btn-primary">register</button>
@@ -176,7 +176,6 @@
     <script>
       var myModal = document.getElementById("myModal")
       var myInput = document.getElementById("myInput")
-      
       myModal.addEventListener("shown.bs.modal", function (){
         myInput.focus()
       })

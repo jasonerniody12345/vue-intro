@@ -112,3 +112,11 @@ border-radius: 50%;
     -ms-transform: translateX(26px);
     transform: translateX(26px);
   }
+
+  .red-text {
+    color: red;
+  }
+
+  .green-text {
+    color: green;
+  }
