@@ -1,20 +1,7 @@
 new Vue ({
     el: "#app",
     data: {
-        list: [
-            {
-                name: "jason",
-                description: "tarek sis",
-                dueDate: "2021-05-10",
-                status: false
-            },
-            {
-                name: "justin",
-                description: "mantoel",
-                dueDate: "2021-05-04",
-                status: false
-            }
-        ],
+        list: [],
         deleteTodoName: "",
         title: "list",
         onEditIndex: "",
@@ -37,6 +24,15 @@ new Vue ({
         isRegister: false,
         registered: false,
         page: "content"
+    },
+    created (){
+        axios.get("http://localhost:3000/todos/getAllTodo")
+            .then(response => {
+                this.list = response.data.getTodo
+            })
+            .catch(err => {
+                console.log(err)
+            })
     },
     computed: {
         validateLoginInput: function () {
