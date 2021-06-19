@@ -32,7 +32,12 @@
 
 .login-false {
     color:rgb(160, 23, 23);
-    margin-top: -15%;
+    margin-top: -20%;
+}
+
+.register-false {
+  color:rgb(160, 23, 23);
+  /* margin-top: -20%; */
 }
 
 .add-button {

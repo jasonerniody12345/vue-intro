@@ -141,7 +141,7 @@
               <input type="password" v-model="passInput" class="form-control mt-2" placeholder="password" required>
             </div>
             <div class="button-login">
-              <button @click="onLogin" class="btn btn-primary">login</button>
+              <button  @click="onSubmitLogin" class="btn btn-primary">login</button>
               <button @click="onRegister" class="btn btn-primary">register</button>
             </div>
             <div class="login-false" v-if="isError === true"> 
@@ -154,18 +154,21 @@
         <div class="title-register"> 
           <h2>Register</h2>
         </div>
+        <div class="fullName-input">
+          <input type="text" v-model="userFullName" class="form-control mt-2" placeholder="Full Name" required>
+        </div>
         <div class="email-input">
-          <input type="text" v-model="userEmail" class="form-control mt-2" placeholder="email" required>
+          <input type="email" v-model="userEmail" class="form-control mt-2" placeholder="email" required>
         </div>
         <div class="password-input">
           <input type="password" v-model="userPass" class="form-control mt-2" placeholder="password" required>
         </div>
+        <div class="register-false mt-3" v-if="isErrorRegisterFullName === true">
+          <p>Please Remember Full Name Needs The Minimum of 6 Alphabet</p>
+        </div>
         <div class="button-register">
           <button :disabled="validateRegisterInput === false" @click="onSubmitRegister" class="btn btn-primary">register</button>
           <button @click="onBack" class="btn btn-primary">back</button>
-        </div>
-        <div class="register-true" v-if="registered === true">
-          <p>Sucessfully registered</p>
         </div>
     </div>
   </div>

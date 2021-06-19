@@ -2,6 +2,7 @@ new Vue ({
     el: "#app",
     data: {
         list: [],
+        userFullName: "",
         deleteTodoName: "",
         title: "list",
         onEditIndex: "",
@@ -23,11 +24,15 @@ new Vue ({
         isError: false,
         isRegister: false,
         registered: false,
-        page: "content"
+        page: "content",
+        isError: false,
+        isErrorRegisterFullName: false
     },
     created (){
+        // console.log("======helo========")
         axios.get("http://localhost:3000/todos/getAllTodo")
             .then(response => {
+                // console.log(response.data.getTodo)
                 this.list = response.data.getTodo
             })
             .catch(err => {
@@ -36,7 +41,7 @@ new Vue ({
     },
     computed: {
         validateLoginInput: function () {
-          return this.emailInput === this.userEmail && this.userPass === this.passInput && this.UserPass !== "" && this.emailInput !== ""
+          return this.emailInput === this.userEmail && this.userPass === this.passInput && this.UserPass !== "" && this.emailInput !== ""    
         },
         validateRegisterInput: function(){
             // if(this.userEmail !== "" && this.userPass !== ""){
@@ -45,7 +50,7 @@ new Vue ({
             // else {
             //     return true 
             // }
-            return this.userEmail !== "" && this.userPass !== ""
+            return this.userEmail !== "" && this.userPass !== "" && this.userFullName !== "" 
         },
         validateContentInput: function(){
             return this.newName !== "" && this.newDescription !== "" && this.dueDate !== ""
@@ -108,7 +113,51 @@ new Vue ({
             // this.isRegister = true
         },
         onSubmitRegister (){
-            this.page = "login"
+            if(this.userFullName.length < 6){
+                console.log("Fullname is less than 6 alphabet")
+                this.isErrorRegisterFullName = true
+            }
+            else if (this.userEmail.length < 6) {
+
+            }
+            else if (this.userPass.length < 6) {
+                
+            }
+            else {
+                axios.post("http://localhost:3000/users/create", {
+                    name: this.userFullName,
+                    email: this.userEmail,
+                    password: this.userPass
+                })
+                .then(response => {
+                    // console.log(response)
+                    this.page = "login"
+                    // this.list = response.data.getTodo
+                })
+                .catch(err => {
+                    console.log(err)
+                    this.isError = true
+                })
+            }
+        },
+        onSubmitLogin (){
+            // console.log(this.emailInput)
+            // console.log(this.passInput)
+            axios.post("http://localhost:3000/users/login", {
+                email: this.emailInput,
+                password: this.passInput
+            })
+            .then(response => {
+                // console.log(response)
+                console.log(response)
+                this.page = "content"
+                this.isLoggedIn = true
+                // this.list = response.data.getTodo
+            })
+            .catch(err => {
+                console.log(err)
+                this.isError = true
+            })
         },
         onBack(){
             this.page = "login"
