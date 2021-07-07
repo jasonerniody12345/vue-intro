@@ -26,7 +26,9 @@ new Vue ({
         registered: false,
         page: "content",
         isError: false,
-        isErrorRegisterFullName: false
+        isErrorRegisterFullName: false,
+        isErrorRegisterEmail: false,
+        isErrorRegisterPassword: false
     },
     created (){
         // console.log("======helo========")
@@ -73,7 +75,8 @@ new Vue ({
             })   
             this.newName = "",
             this.newDescription = "",
-            this.dueDate = ""
+            this.dueDate = "",
+            swal("Sucessfully Added Todo!", "", "success")
         },
         onSubmitEdit (){
             console.log(this.onEditIndex)
@@ -92,6 +95,7 @@ new Vue ({
         },
         onConfirmDelete (index) {
             this.list.splice(index, 1)
+            swal("You Just Deleted The Recent Todo", "", "success")
         },
         onDelete (index){
             // console.log("=========", this.list[index])
@@ -118,10 +122,12 @@ new Vue ({
                 this.isErrorRegisterFullName = true
             }
             else if (this.userEmail.length < 6) {
-
+                console.log("Email is less than 6 alphabet")
+                this.isErrorRegisterEmail = true
             }
             else if (this.userPass.length < 6) {
-                
+                console.log("Password is less than 6 alphabet")
+                this.isErrorRegisterPassword = true
             }
             else {
                 axios.post("http://localhost:3000/users/create", {
@@ -132,6 +138,7 @@ new Vue ({
                 .then(response => {
                     // console.log(response)
                     this.page = "login"
+                    swal("Registered!", "Redirecting You To Login Page", "success")
                     // this.list = response.data.getTodo
                 })
                 .catch(err => {
@@ -149,7 +156,9 @@ new Vue ({
             })
             .then(response => {
                 // console.log(response)
+                // taroh swal disini 
                 console.log(response)
+                swal("Logged In!", "Redirecting You To Todo Page", "success");
                 this.page = "content"
                 this.isLoggedIn = true
                 // this.list = response.data.getTodo
