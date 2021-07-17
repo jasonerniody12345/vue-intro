@@ -2,6 +2,7 @@ new Vue ({
     el: "#app",
     data: {
         list: [],
+        isEmpty: true,
         userFullName: "",
         deleteTodoName: "",
         title: "list",
@@ -32,14 +33,19 @@ new Vue ({
     },
     created (){
         // console.log("======helo========")
-        axios.get("http://localhost:3000/todos/getAllTodo")
-            .then(response => {
-                // console.log(response.data.getTodo)
-                this.list = response.data.getTodo
-            })
-            .catch(err => {
-                console.log(err)
-            })
+        axios.get("http://localhost:3000/todos/getTodo", {
+            
+            headers: {
+                token: localStorage.getItem("token")
+             }
+        })
+        .then(response => {
+            console.log(response.data.getOne)
+            this.list = response.data.getOne
+        })
+        .catch(err => {
+            console.log(err)
+        })
     },
     computed: {
         validateLoginInput: function () {
@@ -63,21 +69,30 @@ new Vue ({
     },
     methods: {
         onSubmit () {
-            // console.log(this.newList)
-            // this.list.push(this.newList)
-            // this.newList = ""
-            this.list.push({
+            
+            axios.post("http://localhost:3000/todos/create", {
                 name: this.newName,
-                description: this.newDescription,
-                dueDate: this.dueDate,
-                status: this.newStatus
-                // status: "todo"
-            })   
-            this.newName = "",
-            this.newDescription = "",
-            this.dueDate = "",
-            swal("Sucessfully Added Todo!", "", "success")
+                desciprtion: this.newDescription,
+                status: false,
+                dueDate: this.newDueDate 
+            }, 
+            {
+                headers: {
+                    token: localStorage.getItem("token")
+                }
+            })
+            .then(res => {
+                console.log(res)
+                this.newName = "",
+                this.newDescription = "",
+                this.dueDate = "",
+                swal("Sucessfully Added Todo!", "", "success")
+            })
+            .catch(err => {
+                console.log(err)
+            })
         },
+
         onSubmitEdit (){
             console.log(this.onEditIndex)
             this.list[this.onEditIndex].name = this.editName,
@@ -94,8 +109,20 @@ new Vue ({
             this.editStatus = this.list[index].status
         },
         onConfirmDelete (index) {
-            this.list.splice(index, 1)
-            swal("You Just Deleted The Recent Todo", "", "success")
+            axios.delete("http://localhost:3000/todos/delete/:id", {
+            }, 
+            {
+                headers: {
+                    token: localStorage.getItem("userID")
+                }
+            })
+            .then(res => {
+                this.list.splice(index, 1)
+                swal("You Just Deleted The Recent Todo", "", "success")
+            })
+            .catch(err => {
+                console.log(err)
+            })
         },
         onDelete (index){
             // console.log("=========", this.list[index])
@@ -142,7 +169,7 @@ new Vue ({
                     // this.list = response.data.getTodo
                 })
                 .catch(err => {
-                    console.log(err)
+                    console.log("==============", err)
                     this.isError = true
                 })
             }
@@ -161,6 +188,7 @@ new Vue ({
                 swal("Logged In!", "Redirecting You To Todo Page", "success");
                 this.page = "content"
                 this.isLoggedIn = true
+                localStorage.setItem("token", response.data.accessToken)
                 // this.list = response.data.getTodo
             })
             .catch(err => {
@@ -171,6 +199,7 @@ new Vue ({
         onBack(){
             this.page = "login"
             this.isLoggedIn = false
+            localStorage.clear();
         }
     }
 })
