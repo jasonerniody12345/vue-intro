@@ -5,7 +5,8 @@ new Vue ({
         isEmpty: false,
         userFullName: "",
         deleteTodoName: "",
-        detleteTodoId: "",
+        deleteTodoId: "",
+        editTodoId: "",
         title: "list",
         onEditIndex: "",
         updatedList: "",
@@ -78,7 +79,7 @@ new Vue ({
                 }
             })
             .then(response => {
-                console.log(response.data.getOne)
+                // console.log(response.data.getOne)
                 if (response.data.getOne.length === 0) {
                     this.isEmpty = true
                 }
@@ -106,7 +107,7 @@ new Vue ({
                 }
             })
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 this.newName = "",
                 this.newDescription = "",
                 this.dueDate = "",
@@ -119,20 +120,37 @@ new Vue ({
         },
 
         onSubmitEdit (){
-            console.log(this.onEditIndex)
-            this.list[this.onEditIndex].name = this.editName,
-            this.list[this.onEditIndex].description = this.editDescription,
-            this.list[this.onEditIndex].dueDate = this.editDueDate,
-            this.list[this.onEditIndex].status = this.editStatus,
-            this.fetchTodoList()
+
+            axios.put(`http://localhost:3000/todos/update/${this.editTodoId}`, {
+               name: this.list[this.onEditIndex].name = this.editName,
+               description: this.list[this.onEditIndex].description = this.editDescription,
+               status: this.list[this.onEditIndex].dueDate = this.editDueDate,
+               dueDate: this.list[this.onEditIndex].status = this.editStatus,
+            },
+            {
+                headers: {
+                    token: localStorage.getItem("userID")
+                } 
+            })
+            .then(res => {
+                // console.log(this.onEditIndex)
+                this.fetchTodoList()
+                swal("You Updated Recent Todo", "", "success")
+            })
+            .catch(err => {
+                console.log(err)
+            })
         },
         onEdit (index){
             // console.log("====", this.list[index])
+            // console.log(this.list[index].name)
+            // console.log(this.list[index]._id)
             this.onEditIndex = index
             this.editName = this.list[index].name
             this.editDescription = this.list[index].description
             this.editDueDate = this.list[index].dueDate
             this.editStatus = this.list[index].status
+            this.editTodoId = this.list[index]._id
         },
         onConfirmDelete () {
             // console.log("==============")
@@ -202,7 +220,7 @@ new Vue ({
                     // this.list = response.data.getTodo
                 })
                 .catch(err => {
-                    console.log("==============", err)
+                    console.log(err)
                     this.isError = true
                 })
             }
@@ -217,7 +235,7 @@ new Vue ({
             .then(response => {
                 // console.log(response)
                 // taroh swal disini 
-                console.log(response)
+                // console.log(response)
                 swal("Logged In!", "Redirecting You To Todo Page", "success");
                 this.page = "content"
                 this.isLoggedIn = true
