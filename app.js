@@ -121,15 +121,16 @@ new Vue ({
 
         onSubmitEdit (){
 
+            // console.log(this.editTodoId)
             axios.put(`http://localhost:3000/todos/update/${this.editTodoId}`, {
-               name: this.list[this.onEditIndex].name = this.editName,
-               description: this.list[this.onEditIndex].description = this.editDescription,
-               status: this.list[this.onEditIndex].dueDate = this.editDueDate,
-               dueDate: this.list[this.onEditIndex].status = this.editStatus,
+               name: this.editName,
+               description: this.editDescription,
+               status: this.editStatus,
+               dueDate: this.editDueDate,
             },
             {
                 headers: {
-                    token: localStorage.getItem("userID")
+                    token: localStorage.getItem("token")
                 } 
             })
             .then(res => {
@@ -158,7 +159,7 @@ new Vue ({
             
             axios.delete(`http://localhost:3000/todos/delete/${this.deleteTodoId}`, {
                 headers: {
-                    token: localStorage.getItem("userID")
+                    token: localStorage.getItem("token")
                 }
             })
             .then(res => {
@@ -240,7 +241,6 @@ new Vue ({
                 this.page = "content"
                 this.isLoggedIn = true
                 localStorage.setItem("token", response.data.accessToken)
-                localStorage.setItem("userID", response.data.accessToken)
                 this.emailInput = ""
                 this.passInput = ""
                 this.fetchTodoList()
