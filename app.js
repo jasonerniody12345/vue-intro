@@ -34,20 +34,24 @@ new Vue ({
         isErrorRegisterPassword: false
     },
     created (){
-        // console.log("======helo========")
-        axios.get("http://localhost:3000/todos/getTodo", {
-            
-            headers: {
-                token: localStorage.getItem("token")
-             }
-        })
-        .then(response => {
-            // console.log(response.data.getOne)
-            this.list = response.data.getOne
-        })
-        .catch(err => {
-            console.log(err)
-        })
+        if (localStorage.getItem('token')) {
+            axios.post('http://localhost:3000/users/verifyToken', {
+                token: localStorage.getItem('token')
+            })
+            .then(res => {
+                console.log(res)
+                this.fetchTodoList()
+                this.page = 'content'
+                this.isLoggedIn = true
+            })
+            .catch(err => {
+                this.page = 'login'
+                this.isLoggedIn = false            
+            })
+        } else {
+            this.page = 'login'
+            this.isLoggedIn = false
+        }
     },
     computed: {
         validateLoginInput: function () {
@@ -70,7 +74,6 @@ new Vue ({
         }
     },
     methods: {
-
         fetchTodoList () {
             axios.get("http://localhost:3000/todos/getTodo", {
 
