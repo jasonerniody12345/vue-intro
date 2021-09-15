@@ -92,8 +92,19 @@ new Vue ({
                 }
             })
             .catch(err => {
-                console.log(errr)
+                console.log(err)
             })
+        },
+
+        onSuccessLogin (){
+            this.page = "content"
+            this.isLoggedIn = true
+            this.fetchTodoList()
+        },  
+
+        onSuccessRegister () {
+            console.log("=============")
+            this.page = "login"
         },
 
         onSubmit () {
@@ -194,65 +205,6 @@ new Vue ({
         onRegister (){
             this.page = "register"
             // this.isRegister = true
-        },
-        onSubmitRegister (){
-            if(this.userFullName.length < 6){
-                console.log("Fullname is less than 6 alphabet")
-                this.isErrorRegisterFullName = true
-            }
-            else if (this.userEmail.length < 6) {
-                console.log("Email is less than 6 alphabet")
-                this.isErrorRegisterEmail = true
-            }
-            else if (this.userPass.length < 6) {
-                console.log("Password is less than 6 alphabet")
-                this.isErrorRegisterPassword = true
-            }
-            else {
-                axios.post("http://localhost:3000/users/create", {
-                    name: this.userFullName,
-                    email: this.userEmail,
-                    password: this.userPass
-                })
-                .then(response => {
-                    // console.log(response)
-                    this.page = "login"
-                    swal("Registered!", "Redirecting You To Login Page", "success")
-                    this.userFullName = ""
-                    this.userEmail = ""
-                    this.userPass = ""
-                    // this.list = response.data.getTodo
-                })
-                .catch(err => {
-                    console.log(err)
-                    this.isError = true
-                })
-            }
-        },
-        onSubmitLogin (){
-            // console.log(this.emailInput)
-            // console.log(this.passInput)
-            axios.post("http://localhost:3000/users/login", {
-                email: this.emailInput,
-                password: this.passInput
-            })
-            .then(response => {
-                // console.log(response)
-                // taroh swal disini 
-                // console.log(response)
-                swal("Logged In!", "Redirecting You To Todo Page", "success");
-                this.page = "content"
-                this.isLoggedIn = true
-                localStorage.setItem("token", response.data.accessToken)
-                this.emailInput = ""
-                this.passInput = ""
-                this.fetchTodoList()
-                // this.list = response.data.getTodo
-            })
-            .catch(err => {
-                console.log(err)
-                this.isError = true
-            })
         },
         onBack(){
             this.page = "login"

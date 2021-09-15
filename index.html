@@ -110,93 +110,32 @@
     </div>
 
       <!--Content Page-->
-      <div class="is-logged-in" v-if="isLoggedIn === true && page === 'content'">
-        <div class="title-content">
-          <h2>{{ title }}</h2>
-        </div>
-        <div class="add-button">
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Add Todo List</button>
-          <button @click="onBack" class="btn btn-primary">Logout</button>
-        </div>
-          <div class="table" v-if="isEmpty === false">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Description</th>
-                <th scope="col">Created Date</th>
-                <th scope="col">Due Date</th>
-                <th scope="col">Status</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="(item, index) in list" :key="index">
-                <th scope="row"> <p v-bind:class="{'red-text': item.status === false, 'green-text': item.status === true}"> {{ index + 1 }} </p></th>
-                <td><p> {{ item.name }} </p></td>
-                <td><p> {{ item.description }} </p></td>
-                <td><p> {{ createdDate }} </p></td>
-                <td><p> {{ item.dueDate }} </p></td>
-                <td v-if="item.status === true"><p style="color:green"> done </p></td>
-                <td v-else="item.status === false"><p style="color:red"> todo </p></td>
-                <td><p><a href = "#"data-toggle="modal" data-target="#exampleModalCenter2" @click="onEdit(index)">Edit</a> | <a href = "#" data-toggle="modal" data-target="#exampleModalCenter3" @click="onDelete(index)">Delete</a></p></td>
-              </tr>
-            </tbody>
-          </table>
-          </div>
-      </div>
+      <content-form
+      v-if="isLoggedIn === true && page === 'content'"
+      :list="list"
+      :is-empty="isEmpty"
+      @onback = "onBack()"
+      ></content-form> 
 
       <!--Login Page-->
-      <div class="is-logged-out" v-else-if="isLoggedIn === false && page === 'login'">
-        <div class="title-login"> 
-          <h2>Login</h2>
-        </div>
-        <div class="email-input-1">
-          <input type="text" v-model="emailInput" class="form-control mt-2" placeholder="email" required>
-        </div>
-        <div class=password-input-1>
-          <input type="password" v-model="passInput" class="form-control mt-2" placeholder="password" required>
-        </div>
-        <div class="login-false" v-if="isError === true"> 
-          <p>Wrong Username or password</p>
-        </div>
-            <div class="button-login">
-              <button  @click="onSubmitLogin" class="btn btn-primary">login</button>
-              <button @click="onRegister" class="btn btn-primary">register</button>
-            </div>
-      </div>
+      <login-form 
+        v-else-if="isLoggedIn === false && page === 'login'"
+        @onregister = "onRegister()"
+        @onsuccesslogin = "onSuccessLogin()"
+      ></login-form>
 
       <!--Register Page-->
-      <div class="register" v-else-if="page === 'register'">
-        <div class="title-register"> 
-          <h2>Register</h2>
-        </div>
-        <div class="fullName-input">
-          <input type="text" v-model="userFullName" class="form-control mt-2" placeholder="Full Name" required>
-        </div>
-        <div class="email-input">
-          <input type="email" v-model="userEmail" class="form-control mt-2" placeholder="email" required>
-        </div>
-        <div class="password-input">
-          <input type="password" v-model="userPass" class="form-control mt-2" placeholder="password" required>
-        </div>
-        <div class="register-false mt-3" v-if="isErrorRegisterFullName === true">
-          <p>Please Remember Full Name Needs The Minimum of 6 Alphabet</p>
-        </div>
-        <div class="register-false mt-3" v-else-if="isErrorRegisterEmail === true">
-          <p>Please Remember Email Needs The Minimum of 6 Alphabet</p>
-        </div>
-        <div class="register-false mt-3" v-else-if="isErrorRegisterPassword === true">
-          <p>Please Remember Password Needs The Minimum of 6 Alphabet</p>
-        </div>
-        <div class="button-register">
-          <button :disabled="validateRegisterInput === false" @click="onSubmitRegister" class="btn btn-primary">register</button>
-          <button @click="onBack" class="btn btn-primary">back</button>
-        </div>
-    </div>
+      <register-form
+        v-else-if="page === 'register'"
+        @onsuccessregister = "onSuccessRegister()"
+        @onback = "onBack()"
+      ></register-form>
+
   </div>
     </body>
+    <script src="../components/login.js"></script>  
+    <script src="../components/content.js"></script>  
+    <script src="../components/register.js"></script>  
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
