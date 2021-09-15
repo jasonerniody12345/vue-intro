@@ -8,7 +8,7 @@ Vue.component("register-form", {
           userPass: "",
         }
     },
-    computed: {
+  computed: {
       validateRegisterInput: function(){
         // if(this.userEmail !== "" && this.userPass !== ""){
         //     return false
@@ -60,25 +60,25 @@ Vue.component("register-form", {
     },
     template: `
     <div class="register">
-    <div class="title-register"> 
-      <h2>Register</h2>
+      <div class="title-register"> 
+        <h2>Register</h2>
+      </div>
+      <div class="fullName-input">
+        <input type="text" v-model="userFullName" class="form-control mt-2" placeholder="full Name" required>
+      </div>
+      <div class="email-input">
+        <input type="email" v-model="userEmail" class="form-control mt-2" placeholder="email" required>
+      </div>
+      <div class="password-input">
+        <input type="password" v-model="userPass" class="form-control mt-2" placeholder="password" required>
+      </div>
+      <div class="register-false mt-3" v-if="isErrorRegister === true">
+        <p>{{errorMessage}}</p>
+      </div>
+      <div class="button-register">
+        <button :disabled="validateRegisterInput === false" @click="onSubmitRegister" class="btn btn-primary">register</button>
+        <button @click='$emit("onback")' class="btn btn-primary">back</button>
+      </div>
     </div>
-    <div class="fullName-input">
-      <input type="text" v-model="userFullName" class="form-control mt-2" placeholder="Full Name" required>
-    </div>
-    <div class="email-input">
-      <input type="email" v-model="userEmail" class="form-control mt-2" placeholder="email" required>
-    </div>
-    <div class="password-input">
-      <input type="password" v-model="userPass" class="form-control mt-2" placeholder="password" required>
-    </div>
-    <div class="register-false mt-3" v-if="isErrorRegister === true">
-      <p>{{errorMessage}}</p>
-    </div>
-    <div class="button-register">
-      <button :disabled="validateRegisterInput === false" @click="onSubmitRegister" class="btn btn-primary">register</button>
-      <button @click='$emit("onback")' class="btn btn-primary">back</button>
-    </div>
-</div>
     `
 })

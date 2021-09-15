@@ -5,6 +5,11 @@ Vue.component("content-form", {
         }
     },
     props: ["list", "isEmpty"],
+    computed: {
+      createdDate: function(){
+        return new Date().toLocaleDateString();
+      }
+    },
     methods: {
         onDelete (index){
             // console.log(index)
@@ -18,12 +23,13 @@ Vue.component("content-form", {
             // console.log("====", this.list[index])
             // console.log(this.list[index].name)
             // console.log(this.list[index]._id)
-            this.onEditIndex = index
-            this.editName = this.list[index].name
-            this.editDescription = this.list[index].description
-            this.editDueDate = this.list[index].dueDate
-            this.editStatus = this.list[index].status
-            this.editTodoId = this.list[index]._id
+            // this.onEditIndex = index
+            // this.editName = this.list[index].name
+            // this.editDescription = this.list[index].description
+            // this.editDueDate = this.list[index].dueDate
+            // this.editStatus = this.list[index].status
+            // this.editTodoId = this.list[index]._id
+            this.$emit("onedit", index)
         }
     },
     template: `

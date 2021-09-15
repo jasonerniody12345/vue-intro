@@ -53,26 +53,26 @@ new Vue ({
             this.isLoggedIn = false
         }
     },
-    computed: {
-        validateLoginInput: function () {
-          return this.emailInput === this.userEmail && this.userPass === this.passInput && this.UserPass !== "" && this.emailInput !== ""    
-        },
-        validateRegisterInput: function(){
-            // if(this.userEmail !== "" && this.userPass !== ""){
-            //     return false
-            // }
-            // else {
-            //     return true 
-            // }
-            return this.userEmail !== "" && this.userPass !== "" && this.userFullName !== "" 
-        },
-        validateContentInput: function(){
-            return this.newName !== "" && this.newDescription !== "" && this.dueDate !== ""
-        },
-        createdDate: function(){
-            return new Date().toLocaleDateString();
-        }
-    },
+    // computed: {
+    //     validateLoginInput: function () {
+    //       return this.emailInput === this.userEmail && this.userPass === this.passInput && this.UserPass !== "" && this.emailInput !== ""    
+    //     },
+    //     validateRegisterInput: function(){
+    //         // if(this.userEmail !== "" && this.userPass !== ""){
+    //         //     return false
+    //         // }
+    //         // else {
+    //         //     return true 
+    //         // }
+    //         return this.userEmail !== "" && this.userPass !== "" && this.userFullName !== "" 
+    //     },
+    //     validateContentInput: function(){
+    //         return this.newName !== "" && this.newDescription !== "" && this.dueDate !== ""
+    //     },
+    //     createdDate: function(){
+    //         return new Date().toLocaleDateString();
+    //     }
+    // },
     methods: {
         fetchTodoList () {
             axios.get("http://localhost:3000/todos/getTodo", {
@@ -101,6 +101,14 @@ new Vue ({
             this.isLoggedIn = true
             this.fetchTodoList()
         },  
+
+        onSuccessCreate (){
+            this.fetchTodoList()
+        },
+
+        onSuccessEdit (){
+            this.fetchTodoList()
+        },
 
         onSuccessRegister () {
             console.log("=============")
@@ -160,6 +168,7 @@ new Vue ({
             // console.log("====", this.list[index])
             // console.log(this.list[index].name)
             // console.log(this.list[index]._id)
+            console.log(index, "====================")
             this.onEditIndex = index
             this.editName = this.list[index].name
             this.editDescription = this.list[index].description

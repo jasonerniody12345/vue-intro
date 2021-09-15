@@ -12,108 +12,13 @@
 </head>
 <body>
     <div id=app>
-    
-    <!-- Modal -->
-      <!-- <div class="modal fade" id="exampleModalCenter0" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Greetings!</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <p>You Currently Have Zero Todo List!</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-      </div> -->
-
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Create Todo List</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-              <input type="text" class="form-control mt-2"  v-model="newName" placeholder="name" @keyup.enter="onSubmit">
-              <input type="text" class="form-control mt-2"  v-model="newDescription" placeholder="description" @keyup.enter="onSubmit">
-              <input class= "form-control mt-2" type="date" v-model="dueDate" @keyup.enter="onSubmit"> 
-              <br>            
-              <p>Todo or Done</p>  
-                <label class="switch">
-                  <input type="checkbox" checked v-model="newStatus" @keyup.enter="onSubmit">
-                  <span class="slider round"></span>
-                </label>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button :disabled="validateContentInput === false" type="button" class="btn btn-primary" data-dismiss="modal" @click="onSubmit">Add List</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Edit Todo List</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <input type="test" class="form-control mt-2" v-model="editName" placeholder="name" @keyup.enter="onSubmitEdit">
-            <input type="text" class="form-control mt-2" v-model="editDescription" placeholder="description" @keyup.enter="onSubmitEdit">
-            <input type="date" class= "form-control mt-2" v-model="editDueDate" @keyup.enter="onSubmitEdit">
-            <br>
-            <p>Todo or Done</p>
-            <label class="switch">
-              <input type="checkbox" checked v-model="editStatus" @keyup.enter="onSubmitEdit">
-              <span class="slider round"></span>
-            </label>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal" @click="onSubmitEdit">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal fade" id="exampleModalCenter3" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Delete Todo List</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>Are you sure you want to delete todo {{ deleteTodoName }}?</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal" @click="onConfirmDelete">Confirm</button>
-          </div>
-        </div>
-      </div>
-    </div>
 
       <!--Content Page-->
       <content-form
       v-if="isLoggedIn === true && page === 'content'"
       :list="list"
       :is-empty="isEmpty"
+      @onedit="onEdit"
       @onback = "onBack()"
       ></content-form> 
 
@@ -131,21 +36,44 @@
         @onback = "onBack()"
       ></register-form>
 
+      <!--Create Modal-->
+      <create-form
+        @onsuccesscreate = "onSuccessCreate()"
+      ></create-form>> 
+
+      <!--Edit Modal-->
+      <edit-form
+        :edit-todo-id="editTodoId"
+        :edit-name="editName"
+        :edit-description="editDescription"
+        :edit-due-date="editDueDate"
+        :edit-status="editStatus"
+        @onsuccessedit = "onSuccessEdit()"
+      ></edit-form>
+
+      <!--Delete Modal-->
+      <delete-form
+
+      ></delete-form>
+
   </div>
     </body>
-    <script src="../components/login.js"></script>  
-    <script src="../components/content.js"></script>  
-    <script src="../components/register.js"></script>  
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <script src="../components/delete.js"></script>
+    <script src="../components/edit.js"></script>
+    <script src="../components/create.js"></script>
+    <script src="../components/login.js"></script>  
+    <script src="../components/content.js"></script>  
+    <script src="../components/register.js"></script>  
+    <script src="app.js"></script>
     <script>
       $(document).ready(function(){
           $("#exampleModalCenter0").modal('show');
       });
-  </script>
-    <script src="app.js"></script>
+    </script>
     <script>
       var myModal = document.getElementById("myModal")
       var myInput = document.getElementById("myInput")
