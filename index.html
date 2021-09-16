@@ -53,7 +53,9 @@
 
       <!--Delete Modal-->
       <delete-form
-
+        :delete-todo-name="deleteTodoName"
+        :delete-todo-id="deleteTodoId"
+        @onsuccessdelete = "onSuccessDelete()"
       ></delete-form>
 
   </div>

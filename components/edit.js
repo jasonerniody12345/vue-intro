@@ -1,22 +1,18 @@
 Vue.component("edit-form",{
-    props: ["editTodoId", "editName", "editDueDate", "editStatus", "editDescription"],
     data: function() {
         return {
-            nameInput: ""
+
         } 
     },
-    created (){
-        this.nameInput = this.editName
-
-    },
+    props: ["editTodoId", "editName", "editDueDate", "editStatus", "editDescription"],
     methods: {
 
         onSubmitEdit (){
             // console.log(this.editTodoId)
-            console.log("=======================")
-            console.log(this.editTodoId)
+            // console.log("=======================")
+            // console.log(this.editTodoId)
             axios.put(`http://localhost:3000/todos/update/${this.editTodoId}`, {
-            name: this.editNewName,
+            name: this.editName,
             description: this.editDescription,
             status: this.editStatus,
             dueDate: this.editDueDate,
@@ -28,7 +24,7 @@ Vue.component("edit-form",{
             })
             .then(res => {
                 // console.log(this.onEditIndex)
-                console.log(res)
+                // console.log(res)
                 this.$emit("onsuccessedit")
                 swal("You Updated Recent Todo", "", "success")
             })
@@ -48,7 +44,7 @@ Vue.component("edit-form",{
         </button>
         </div>
         <div class="modal-body">
-        <input type="test" class="form-control mt-2" v-model="nameInput" placeholder="name" @keyup.enter="onSubmitEdit">
+        <input type="test" class="form-control mt-2" v-model="editName" placeholder="name" @keyup.enter="onSubmitEdit">
         <input type="text" class="form-control mt-2" v-model="editDescription" placeholder="description" @keyup.enter="onSubmitEdit">
         <input type="date" class= "form-control mt-2" v-model="editDueDate" @keyup.enter="onSubmitEdit">
         <br>

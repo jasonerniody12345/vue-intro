@@ -111,8 +111,11 @@ new Vue ({
         },
 
         onSuccessRegister () {
-            console.log("=============")
             this.page = "login"
+        },
+
+        onSuccessDelete () {
+            this.fetchTodoList()
         },
 
         onSubmit () {

@@ -16,8 +16,9 @@ Vue.component("content-form", {
             // console.log("=========", this.list[index])
             // console.log(this.list[index].name)
             // console.log(this.list)
-            this.deleteTodoName = this.list[index].name
-            this.deleteTodoId = this.list[index]._id
+            // this.deleteTodoName = this.list[index].name
+            // this.deleteTodoId = this.list[index]._id
+            this.$emit("ondelete", index)
         },
         onEdit (index){
             // console.log("====", this.list[index])

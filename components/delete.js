@@ -1,11 +1,11 @@
 Vue.component("delete-form",{
     data: function(){
         return {
-            deleteTodoName: "",
-            
+
         }
     },
-    method: {
+    props: ["deleteTodoName", "deleteTodoId"],
+    methods: {
 
         onConfirmDelete () {
             // console.log("==============")
@@ -17,21 +17,13 @@ Vue.component("delete-form",{
                 }
             })
             .then(res => {
-                this.fetchTodoList()
+                this.$emit("onsuccessdelete")
                 swal("You Just Deleted The Recent Todo", "", "success")
             })
             .catch(err => {
                 console.log(err)
             })
         },
-        onDelete (index){
-            // console.log(index)
-            // console.log("=========", this.list[index])
-            // console.log(this.list[index].name)
-            // console.log(this.list)
-            this.deleteTodoName = this.list[index].name
-            this.deleteTodoId = this.list[index]._id
-        }
 
     },
     template: `
