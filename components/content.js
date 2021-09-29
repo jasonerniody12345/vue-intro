@@ -12,25 +12,11 @@ Vue.component("content-form", {
     },
     methods: {
         onDelete (index){
-            // console.log(index)
-            // console.log("=========", this.list[index])
-            // console.log(this.list[index].name)
-            // console.log(this.list)
-            // this.deleteTodoName = this.list[index].name
-            // this.deleteTodoId = this.list[index]._id
-            this.$emit("ondelete", index)
+          console.log(index)
+          this.$emit("ondelete", index)
         },
         onEdit (index){
-            // console.log("====", this.list[index])
-            // console.log(this.list[index].name)
-            // console.log(this.list[index]._id)
-            // this.onEditIndex = index
-            // this.editName = this.list[index].name
-            // this.editDescription = this.list[index].description
-            // this.editDueDate = this.list[index].dueDate
-            // this.editStatus = this.list[index].status
-            // this.editTodoId = this.list[index]._id
-            this.$emit("onedit", index)
+          this.$emit("onedit", index)
         }
     },
     template: `

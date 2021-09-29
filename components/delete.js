@@ -9,7 +9,7 @@ Vue.component("delete-form",{
 
         onConfirmDelete () {
             // console.log("==============")
-            // console.log(this.deleteTodoId)
+            console.log(this.deleteTodoId)
             
             axios.delete(`http://localhost:3000/todos/delete/${this.deleteTodoId}`, {
                 headers: {

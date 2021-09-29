@@ -22,42 +22,42 @@ Vue.component("register-form", {
     methods: {
       onSubmitRegister (){
         if(this.userFullName.length < 6){
-            console.log("Fullname is less than 6 alphabet")
-            this.errorMessage = "Fullname is less than 6 alphabet"
-            this.isErrorRegister = true
+          console.log("Fullname is less than 6 alphabet")
+          this.errorMessage = "Fullname is less than 6 alphabet"
+          this.isErrorRegister = true
         }
         else if (this.userEmail.length < 6) {
-            console.log("Email is less than 6 alphabet")
-            this.errorMessage = "Email is less than 6 alphabet"
-            this.isErrorRegister = true
+          console.log("Email is less than 6 alphabet")
+          this.errorMessage = "Email is less than 6 alphabet"
+          this.isErrorRegister = true
         }
         else if (this.userPass.length < 6) {
-            console.log("Password is less than 6 alphabet")
-            this.errorMessage = "Password is less than 6 alphabet"
-            this.isErrorRegister = true
+          console.log("Password is less than 6 alphabet")
+          this.errorMessage = "Password is less than 6 alphabet"
+          this.isErrorRegister = true
         }
         else {
             axios.post("http://localhost:3000/users/create", {
-                name: this.userFullName,
-                email: this.userEmail,
-                password: this.userPass
+              name: this.userFullName,
+              email: this.userEmail,
+              password: this.userPass
             })
             .then(response => {
-                // console.log(response)
-                swal("Registered!", "Redirecting You To Login Page", "success")
-                this.userFullName = ""
-                this.userEmail = ""
-                this.userPass = ""
-                this.$emit("onsuccessregister")
-                // this.list = response.data.getTodo
+              // console.log(response)
+              swal("Registered!", "Redirecting You To Login Page", "success")
+              this.userFullName = ""
+              this.userEmail = ""
+              this.userPass = ""
+              this.$emit("onsuccessregister")
+              // this.list = response.data.getTodo
             })
             .catch(err => {
-                console.log(err)
-                this.isError = true
+              console.log(err)
+              this.isError = true
             })
+          }
         }
-    }
-    },
+      },
     template: `
     <div class="register">
       <div class="title-register"> 
