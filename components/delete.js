@@ -11,7 +11,7 @@ Vue.component("delete-form",{
             // console.log("==============")
             console.log(this.deleteTodoId)
             
-            axios.delete(`http://localhost:3000/todos/delete/${this.deleteTodoId}`, {
+            axios.delete(`https://vue-mongoose.herokuapp.com/todos/delete/${this.deleteTodoId}`, {
                 headers: {
                     token: localStorage.getItem("token")
                 }

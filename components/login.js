@@ -11,7 +11,7 @@ Vue.component("login-form", {
         onSubmitLogin (){
             // console.log(this.emailInput)
             // console.log(this.passInput)
-            axios.post("http://localhost:3000/users/login", {
+            axios.post("https://vue-mongoose.herokuapp.com/users/login", {
                 email: this.emailInput,
                 password: this.passInput
             })

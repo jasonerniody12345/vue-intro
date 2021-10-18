@@ -11,7 +11,7 @@ Vue.component("edit-form",{
             // console.log(this.editTodoId)
             // console.log("=======================")
             // console.log(this.editTodoId)
-            axios.put(`http://localhost:3000/todos/update/${this.editTodoId}`, {
+            axios.put(`https://vue-mongoose.herokuapp.com/todos/update/${this.editTodoId}`, {
             name: this.editName,
             description: this.editDescription,
             status: this.editStatus,

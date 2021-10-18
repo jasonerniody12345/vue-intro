@@ -26,7 +26,7 @@ new Vue ({
     },
     created (){
         if (localStorage.getItem('token')) {
-            axios.post('http://localhost:3000/users/verifyToken', {
+            axios.post('https://vue-mongoose.herokuapp.com/users/verifyToken', {
                 token: localStorage.getItem('token')
             })
             .then(res => {
@@ -46,7 +46,7 @@ new Vue ({
     },
     methods: {
         fetchTodoList () {
-            axios.get("http://localhost:3000/todos/getTodo", {
+            axios.get("https://vue-mongoose.herokuapp.com/todos/getTodo", {
 
                 headers: {
                     token: localStorage.getItem("token")

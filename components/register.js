@@ -37,7 +37,7 @@ Vue.component("register-form", {
           this.isErrorRegister = true
         }
         else {
-            axios.post("http://localhost:3000/users/create", {
+            axios.post("https://vue-mongoose.herokuapp.com/users/create", {
               name: this.userFullName,
               email: this.userEmail,
               password: this.userPass
